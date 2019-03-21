@@ -8,7 +8,7 @@ namespace core.Tests
     public class EnumTests
     {
         [Fact]
-        public void EnumAsInteger0()
+        public void Test__EnumAsInteger0()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => 0;
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly));
@@ -16,7 +16,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsInteger1()
+        public void Test__EnumAsInteger1()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => SomeFlagsEnum.A;
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly));
@@ -24,7 +24,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumCompareAsInteger0()
+        public void Test__EnumCompareAsInteger0()
         {
             Expression<Func<MyClassWithEnum, bool>> expr = o => o.SomeFlagsEnum == 0;
             var js = expr.CompileToJavascript();
@@ -32,7 +32,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumCompareAsInteger1()
+        public void Test__EnumCompareAsInteger1()
         {
             Expression<Func<MyClassWithEnum, bool>> expr = o => o.SomeFlagsEnum == SomeFlagsEnum.A;
             var js = expr.CompileToJavascript();
@@ -40,7 +40,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumCompareAsInteger2()
+        public void Test__EnumCompareAsInteger2()
         {
             Expression<Func<MyClassWithEnum, bool>> expr = o => o.SomeFlagsEnum == (SomeFlagsEnum.A | SomeFlagsEnum.B);
             var js = expr.CompileToJavascript();
@@ -48,16 +48,16 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumCompareWithEnclosed()
+        public void Test__EnumCompareWithEnclosed()
         {
-            var enclosed = SomeFlagsEnum.B;
+            const SomeFlagsEnum enclosed = SomeFlagsEnum.B;
             Expression<Func<MyClassWithEnum, bool>> expr = o => o.SomeFlagsEnum == (SomeFlagsEnum.A ^ ~enclosed);
             var js = expr.CompileToJavascript();
             Assert.Equal(@"SomeFlagsEnum===(1^~2)", js);
         }
 
         [Fact]
-        public void EnumCallWithEnumParam()
+        public void Test__EnumCallWithEnumParam()
         {
             Expression<Action<MyClassWithEnum>> expr = o => o.SetGender(SomeFlagsEnum.B);
             var js = expr.CompileToJavascript(
@@ -68,7 +68,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumCallWithEnumParam2()
+        public void Test__EnumCallWithEnumParam2()
         {
             Expression<Action<MyClassWithEnum>> expr = o => o.SetGender(SomeFlagsEnum.A | SomeFlagsEnum.B);
             var js = expr.CompileToJavascript(
@@ -79,7 +79,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsString0()
+        public void Test__EnumAsString0()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => 0;
             var js = expr.CompileToJavascript(
@@ -90,7 +90,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsString1()
+        public void Test__EnumAsString1()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => SomeFlagsEnum.A;
             var js = expr.CompileToJavascript(
@@ -101,7 +101,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsString2()
+        public void Test__EnumAsString2()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => SomeFlagsEnum.A | SomeFlagsEnum.B;
             var js = expr.CompileToJavascript(
@@ -112,7 +112,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsString3()
+        public void Test__EnumAsString3()
         {
             Expression<Func<SomeStrangeFlagsEnum>> expr = () => SomeStrangeFlagsEnum.A | SomeStrangeFlagsEnum.B;
             var js = expr.CompileToJavascript(
@@ -123,7 +123,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsArrayOfStrings0()
+        public void Test__EnumAsArrayOfStrings0()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => 0;
             var js = expr.CompileToJavascript(
@@ -134,7 +134,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsArrayOfStrings1()
+        public void Test__EnumAsArrayOfStrings1()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => SomeFlagsEnum.A;
             var js = expr.CompileToJavascript(
@@ -145,7 +145,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsArrayOfStrings2()
+        public void Test__EnumAsArrayOfStrings2()
         {
             Expression<Func<SomeFlagsEnum>> expr = () => SomeFlagsEnum.A | SomeFlagsEnum.B;
             var js = expr.CompileToJavascript(
@@ -156,7 +156,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsStringEquals()
+        public void Test__EnumAsStringEquals()
         {
             Expression<Func<MyClassWithEnum, bool>> expr = doc => doc.SomeFlagsEnum == SomeFlagsEnum.B;
             var js = expr.CompileToJavascript(
@@ -167,7 +167,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void EnumAsStringNotEquals()
+        public void Test__EnumAsStringNotEquals()
         {
             Expression<Func<MyClassWithEnum, bool>> expr = doc => doc.SomeFlagsEnum != SomeFlagsEnum.B;
             var js = expr.CompileToJavascript(

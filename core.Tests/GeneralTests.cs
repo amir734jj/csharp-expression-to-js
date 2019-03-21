@@ -11,7 +11,7 @@ namespace core.Tests
     public class GeneralTests
     {
         [Fact]
-        public void FuncWithScopeArgsWithBody()
+        public void Test__FuncWithScopeArgsWithBody()
         {
             Expression<Func<MyClass, object>> expr = x => new { x.Age, x.Name, x.Phones };
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.ScopeParameter));
@@ -19,7 +19,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void FuncWithScopeArgsWoBody()
+        public void Test__FuncWithScopeArgsWoBody()
         {
             Expression<Func<MyClass, object>> expr = x => new { x.Age, x.Name, x.Phones };
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.ScopeParameter | JsCompilationFlags.BodyOnly));
@@ -27,7 +27,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void FuncWoScopeArgsWithBody()
+        public void Test__FuncWoScopeArgsWithBody()
         {
             Expression<Func<MyClass, object>> expr = x => new { x.Age, x.Name, x.Phones };
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0));
@@ -35,7 +35,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void FuncWoScopeArgsWoBody()
+        public void Test__Test__FuncWoScopeArgsWoBody()
         {
             Expression<Func<MyClass, object>> expr = x => new { x.Age, x.Name, x.Phones };
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly));
@@ -43,7 +43,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqWhere()
+        public void Test__Test__LinqWhere()
         {
             Expression<Func<MyClass, object>> expr = x => x.Phones.Where(p => p.Ddd == 21);
             var js = expr.CompileToJavascript();
@@ -51,7 +51,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqCount()
+        public void Test__LinqCount()
         {
             Expression<Func<MyClass, object>> expr = x => x.Phones.Count();
             var js = expr.CompileToJavascript();
@@ -59,7 +59,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqFirstOrDefault()
+        public void Test__LinqFirstOrDefault()
         {
             Expression<Func<MyClass, object>> expr = x => x.Phones.FirstOrDefault(p => p.Ddd > 10);
             var js = expr.CompileToJavascript();
@@ -67,7 +67,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ArrayLength()
+        public void Test__ArrayLength()
         {
             Expression<Func<MyClass, object>> expr = x => x.Phones.Length;
             var js = expr.CompileToJavascript();
@@ -75,7 +75,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ArrayIndex()
+        public void Test__ArrayIndex()
         {
             Expression<Func<MyClass, object>> expr = x => x.Phones[10];
             var js = expr.CompileToJavascript();
@@ -83,7 +83,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ListCount()
+        public void Test__ListCount()
         {
             Expression<Func<MyClass, object>> expr = x => ((IList<Phone>)x.Phones).Count;
             var js = expr.CompileToJavascript();
@@ -91,7 +91,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void DictionaryItem()
+        public void Test__DictionaryItem()
         {
             Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"];
             var js = expr.CompileToJavascript();
@@ -99,7 +99,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void DictionaryContainsKey()
+        public void Test__DictionaryContainsKey()
         {
             Expression<Func<MyClass, object>> expr = x => x.PhonesByName.ContainsKey("Miguel");
             var js = expr.CompileToJavascript();
@@ -107,7 +107,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void OrElseOperator()
+        public void Test__OrElseOperator()
         {
             Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 || x.Phones.Length != 1;
             var js = expr.CompileToJavascript();
@@ -115,7 +115,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void OrOperator()
+        public void Test__OrOperator()
         {
             Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 | x.Phones.Length != 1;
             var js = expr.CompileToJavascript();
@@ -123,7 +123,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewDictionary1()
+        public void Test__InlineNewDictionary1()
         {
             Expression<Func<MyClass, object>> expr = x => new Dictionary<string, string>
                 {
@@ -136,7 +136,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewDictionary2()
+        public void Test__InlineNewDictionary2()
         {
             Expression<Func<MyClass, object>> expr = x => new Hashtable
                 {
@@ -149,7 +149,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewObject()
+        public void Test__InlineNewObject()
         {
             Expression<Func<MyClass, object>> expr = x => new
             {
@@ -162,7 +162,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewArray1()
+        public void Test__InlineNewArray1()
         {
             Expression<Func<MyClass, object>> expr = x => new[] { 1, 2, 3 };
             var js = expr.CompileToJavascript();
@@ -170,7 +170,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewArray2()
+        public void Test__InlineNewArray2()
         {
             Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Miguel" };
             var js = expr.CompileToJavascript();
@@ -178,7 +178,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewArray3()
+        public void Test__InlineNewArray3()
         {
             Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Miguel", (Func<int>)(() => 20) };
             var js = expr.CompileToJavascript();
@@ -186,7 +186,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewArray4()
+        public void Test__InlineNewArray4()
         {
             Expression<Func<MyClass, object>> expr = x => new[]
                 {
@@ -198,7 +198,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewList1()
+        public void Test__InlineNewList1()
         {
             Expression<Func<MyClass, object>> expr = x => new List<int> { 1, 2, 3 };
             var js = expr.CompileToJavascript();
@@ -206,7 +206,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewList2()
+        public void Test__InlineNewList2()
         {
             Expression<Func<MyClass, object>> expr = x => new ArrayList { 1, 2, 3 };
             var js = expr.CompileToJavascript();
@@ -214,7 +214,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void InlineNewMultipleThings()
+        public void Test__InlineNewMultipleThings()
         {
             Expression<Func<MyClass, object>> expr = x => new object[]
                 {
@@ -238,7 +238,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ArrowFunctionOneArg()
+        public void Test__ArrowFunctionOneArg()
         {
             Expression<Func<int, int>> expr = x => 1024 + x;
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
@@ -246,7 +246,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ArrowFunctionManyArgs()
+        public void Test__ArrowFunctionManyArgs()
         {
             Expression<Func<int, int, int>> expr = (x, y) => y + x;
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
@@ -254,7 +254,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ArrowFunctionNoArgs()
+        public void Test__ArrowFunctionNoArgs()
         {
             Expression<Func<int>> expr = () => 1024;
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
@@ -262,7 +262,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void Regex1()
+        public void Test__Regex1()
         {
             Expression<Func<Regex>> expr = () => new Regex(@"^\d{4}-\d\d-\d\d$", RegexOptions.IgnoreCase);
             var js = expr.Body.CompileToJavascript();
@@ -270,7 +270,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void Regex1B()
+        public void Test__Regex1B()
         {
             Expression<Func<Regex>> expr = () => new Regex(@"^\d{4}-\d\d-\d\d$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             var js = expr.Body.CompileToJavascript();
@@ -278,7 +278,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void Regex2()
+        public void Test__Regex2()
         {
             Expression<Func<Func<string, Regex>>> expr = () => (p => new Regex(p, RegexOptions.IgnoreCase | RegexOptions.Multiline));
             var js = expr.Body.CompileToJavascript();
@@ -295,7 +295,7 @@ namespace core.Tests
         }*/
 
         [Fact]
-        public void StringCompare1()
+        public void Test__StringCompare1()
         {
             Expression<Func<Func<string, string, int>>> expr = () => ((s, b) => string.Compare(s, b));
             var js = expr.Body.CompileToJavascript();
@@ -303,7 +303,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringContains()
+        public void Test__StringContains()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.Contains("Miguel");
             var js = expr.CompileToJavascript();
@@ -313,7 +313,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringContains2()
+        public void Test__StringContains2()
         {
             Expression<Func<MyClass, bool>> expr = o => "Miguel Angelo Santos Bicudo".Contains(o.Name);
             var js = expr.CompileToJavascript();
@@ -323,7 +323,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringStartsWith()
+        public void Test__StringStartsWith()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.StartsWith("Test");
             var js = expr.CompileToJavascript(ScriptVersion.Es60);
@@ -331,7 +331,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringEndsWith()
+        public void Test__StringEndsWith()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.EndsWith("Test");
             var js = expr.CompileToJavascript(ScriptVersion.Es60);
@@ -339,7 +339,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringToLower()
+        public void Test__StringToLower()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.ToLower() == "test";
             var js = expr.CompileToJavascript();
@@ -347,7 +347,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringToUpper()
+        public void Test__StringToUpper()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.ToUpper() == "TEST";
             var js = expr.CompileToJavascript();
@@ -355,7 +355,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringTrim()
+        public void Test__StringTrim()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.Trim() == "test";
             var js = expr.CompileToJavascript(ScriptVersion.Es51);
@@ -363,7 +363,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringTrimStart()
+        public void Test__StringTrimStart()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.TrimStart() == "test";
             var js = expr.CompileToJavascript(ScriptVersion.Es50.NonStandard());
@@ -371,7 +371,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringTrimEnd()
+        public void Test__StringTrimEnd()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.TrimEnd() == "test";
             var js = expr.CompileToJavascript(ScriptVersion.Es50.NonStandard());
@@ -379,7 +379,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringSubString()
+        public void Test__StringSubString()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.Substring(1) == "est";
             var js = expr.CompileToJavascript();
@@ -387,7 +387,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringPadLeft()
+        public void Test__StringPadLeft()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.PadLeft(1) == "est";
             var js = expr.CompileToJavascript(ScriptVersion.Es80);
@@ -395,7 +395,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringPadRight()
+        public void Test__StringPadRight()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.PadRight(1) == "est";
             var js = expr.CompileToJavascript(ScriptVersion.Es80);
@@ -403,7 +403,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringLastIndexOf()
+        public void Test__StringLastIndexOf()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.LastIndexOf("!") == 1;
             var js = expr.CompileToJavascript();
@@ -411,7 +411,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringIndexOf()
+        public void Test__StringIndexOf()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Name.IndexOf("!") == 1;
             var js = expr.CompileToJavascript();
@@ -419,7 +419,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringIndexer1()
+        public void Test__StringIndexer1()
         {
             Expression<Func<string, char>> expr = s => s[0];
             var js = expr.CompileToJavascript();
@@ -427,7 +427,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringIndexer2()
+        public void Test__StringIndexer2()
         {
             Expression<Func<string, char>> expr = s => "MASB"[0];
             var js = expr.CompileToJavascript();
@@ -435,7 +435,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToString1()
+        public void Test__NumLiteralToString1()
         {
             Expression<Func<string>> expr = () => 1.ToString();
             var js = expr.Body.CompileToJavascript();
@@ -443,7 +443,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringD()
+        public void Test__NumLiteralToStringD()
         {
             Expression<Func<string>> expr = () => 1.ToString("D");
             var js = expr.Body.CompileToJavascript();
@@ -451,7 +451,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringE()
+        public void Test__NumLiteralToStringE()
         {
             Expression<Func<string>> expr = () => 1.ToString("E");
             var js = expr.Body.CompileToJavascript();
@@ -459,7 +459,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringE4()
+        public void Test__NumLiteralToStringE4()
         {
             Expression<Func<string>> expr = () => 1.ToString("E4");
             var js = expr.Body.CompileToJavascript();
@@ -467,7 +467,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringF()
+        public void Test__NumLiteralToStringF()
         {
             Expression<Func<string>> expr = () => 1.ToString("F");
             var js = expr.Body.CompileToJavascript();
@@ -475,7 +475,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringF4()
+        public void Test__NumLiteralToStringF4()
         {
             Expression<Func<string>> expr = () => 1.ToString("F4");
             var js = expr.Body.CompileToJavascript();
@@ -483,7 +483,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringG()
+        public void Test__NumLiteralToStringG()
         {
             Expression<Func<string>> expr = () => 1.ToString("G");
             var js = expr.Body.CompileToJavascript();
@@ -491,7 +491,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringG4()
+        public void Test__NumLiteralToStringG4()
         {
             Expression<Func<string>> expr = () => 1.ToString("G4");
             var js = expr.Body.CompileToJavascript();
@@ -499,7 +499,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringN()
+        public void Test__NumLiteralToStringN()
         {
             Expression<Func<string>> expr = () => 1.ToString("N");
             var js = expr.Body.CompileToJavascript();
@@ -507,7 +507,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringN4()
+        public void Test__NumLiteralToStringN4()
         {
             Expression<Func<string>> expr = () => 1.ToString("N4");
             var js = expr.Body.CompileToJavascript();
@@ -515,7 +515,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NumLiteralToStringX()
+        public void Test__NumLiteralToStringX()
         {
             Expression<Func<string>> expr = () => 1.ToString("X");
             var js = expr.Body.CompileToJavascript();
@@ -523,7 +523,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringAdd1()
+        public void Test__StringAdd1()
         {
             Expression<Func<MyClass, string>> expr = o => o.Name + ":" + 10;
             var js = expr.CompileToJavascript();
@@ -531,7 +531,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringAdd2()
+        public void Test__StringAdd2()
         {
             Expression<Func<MyClass, string>> expr = o => o.Name + ":" + (o.Age + 10);
             var js = expr.CompileToJavascript();
@@ -539,7 +539,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringAdd3()
+        public void Test__StringAdd3()
         {
             Expression<Func<MyClass, string>> expr = o => 1.5 + o.Name + ":" + (o.Age + 10);
             var js = expr.CompileToJavascript();
@@ -547,7 +547,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringAdd4()
+        public void Test__StringAdd4()
         {
             Expression<Func<MyClass, string>> expr = o => 1.5 + o.Age + ":" + o.Name;
             var js = expr.CompileToJavascript();
@@ -589,7 +589,7 @@ namespace core.Tests
         }*/
 
         [Fact]
-        public void UseEnclosedValues()
+        public void Test__UseEnclosedValues()
         {
             var value = 0;
             Expression<Func<int>> expr = () => value;
@@ -602,7 +602,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck1()
+        public void Test__ConditionalCheck1()
         {
             Expression<Func<MyClass, string>> expr = o => o.Phones.Length > 0 && o.Age < 50 ? o.Name + " " + o.Phones.Length + " has phones and is " + o.Age + "yo" : "ignore";
             var js = expr.CompileToJavascript();
@@ -610,7 +610,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck2()
+        public void Test__ConditionalCheck2()
         {
             Expression<Func<MyClass, string>> expr = o => o.Phones.Length > 0 ? (o.Age < 50 ? "a" : "b") : "c";
             var js = expr.CompileToJavascript();
@@ -618,7 +618,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck3()
+        public void Test__ConditionalCheck3()
         {
             Expression<Func<MyClass, int>> expr = o => o.Phones.Length > 0 ? 1 : (o.Age < 50 ? 2 : 3);
             var js = expr.CompileToJavascript();
@@ -626,7 +626,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck4()
+        public void Test__ConditionalCheck4()
         {
             Expression<Func<MyClass, string>> expr = o => o.Phones.Length > 0 ? "a" : (o.Age < 50 ? "b" : "c");
             var js = expr.CompileToJavascript();
@@ -634,7 +634,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck5()
+        public void Test__ConditionalCheck5()
         {
             Expression<Func<MyClass, int>> expr = o => (o.Phones.Length > 0 ? 1 : 2) + 10;
             var js = expr.CompileToJavascript();
@@ -642,7 +642,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck6()
+        public void Test__ConditionalCheck6()
         {
             Expression<Func<MyClass, string>> expr = o => (o.Phones.Length > 0 ? 1 : 2).ToString();
             var js = expr.CompileToJavascript();
@@ -650,7 +650,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck7()
+        public void Test__ConditionalCheck7()
         {
             Expression<Func<MyClass, int>> expr = o => (o.Phones.Length == 0 ? 1 : (o.Phones.Length == 1 ? 2 : 3)) * 5;
             var js = expr.CompileToJavascript();
@@ -658,9 +658,9 @@ namespace core.Tests
         }
 
         [Fact]
-        public void ConditionalCheck8()
+        public void Test__ConditionalCheck8()
         {
-            var x = 10;
+            const int x = 10;
             Expression<Func<MyClass, int>> expr = o => o.Phones.Length == 0 ? 1 + x : 2 + x;
             var js = expr.CompileToJavascript();
             // TODO: this case could be optimized
@@ -668,7 +668,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CanCompareToNullable()
+        public void Test__CanCompareToNullable()
         {
             Expression<Func<MyClass, bool>> expr = o => o.Count == 1;
             var js = expr.CompileToJavascript();
@@ -676,7 +676,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void BooleanConstants()
+        public void Test__BooleanConstants()
         {
             Expression<Func<object, bool?>> expr1 = x => true;
             Expression<Func<object, bool?>> expr2 = x => false;
@@ -687,7 +687,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void BooleanNullableConstants()
+        public void Test__BooleanNullableConstants()
         {
             Expression<Func<string, bool?>> expr =
                 x =>
@@ -700,7 +700,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CharConstant_a()
+        public void Test__CharConstant_a()
         {
             Expression<Func<object, char>> expr1 = x => 'a';
             var js1 = expr1.CompileToJavascript();
@@ -708,7 +708,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CharConstant_ch0()
+        public void Test__CharConstant_ch0()
         {
             Expression<Func<object, char>> expr1 = x => '\0';
             var js1 = expr1.CompileToJavascript();
@@ -716,7 +716,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CharConstantInt_a()
+        public void Test__CharConstantInt_a()
         {
             Expression<Func<object, int>> expr1 = x => 'a';
             var js1 = expr1.CompileToJavascript();
@@ -724,7 +724,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CharConstantInt_ch0()
+        public void Test__CharConstantInt_ch0()
         {
             Expression<Func<object, int>> expr1 = x => '\0';
             var js1 = expr1.CompileToJavascript();
@@ -732,7 +732,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CharConstant_Sum()
+        public void Test__CharConstant_Sum()
         {
             Expression<Func<char, int>> expr1 = x => x + 'a';
             var js1 = expr1.CompileToJavascript();
@@ -756,7 +756,7 @@ namespace core.Tests
         }
     }
 
-    class MyClass
+    internal class MyClass
     {
         public Phone[] Phones { get; set; }
         public Dictionary<string, Phone> PhonesByName { get; set; }
@@ -765,7 +765,7 @@ namespace core.Tests
         public int? Count { get; set; }
     }
 
-    class Phone
+    internal class Phone
     {
         public int Ddd { get; set; }
     }
