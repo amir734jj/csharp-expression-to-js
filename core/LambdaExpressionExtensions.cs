@@ -16,6 +16,8 @@ namespace core
         /// whether to use a single scope parameter,
         /// what extensions to use (i.e. StaticStringMethods, StaticMathMethods, or any other custom extensions).
         /// </param>
+        /// <param name="scriptVersion"></param>
+        /// <param name="extensions"></param>
         /// <returns>JavaScript code represented as a string.</returns>
         public static string CompileToJavascript(
             [NotNull] this LambdaExpression expr,

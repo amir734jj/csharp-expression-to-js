@@ -44,10 +44,7 @@ namespace core.Plugins
         /// </summary>
         public MemberInitAsJson([NotNull] Predicate<Type> typePredicate)
         {
-            if (typePredicate == null)
-                throw new ArgumentNullException(nameof(typePredicate));
-
-            TypePredicate = typePredicate;
+            TypePredicate = typePredicate ?? throw new ArgumentNullException(nameof(typePredicate));
         }
 
         public override void ConvertToJavascript(JavascriptConversionContext context)

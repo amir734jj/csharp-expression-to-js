@@ -25,10 +25,7 @@ namespace core
             IEnumerable<JavascriptConversionExtension> extensions,
             [NotNull] JavascriptCompilationOptions options)
         {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
-
-            Options = options;
+            Options = options ?? throw new ArgumentNullException(nameof(options));
             this.contextParameter = contextParameter;
             this.extensions = extensions;
         }
@@ -1154,25 +1151,28 @@ namespace core
                     var match = Regex.Match(str, @"^([DEFGNX])(\d*)$", RegexOptions.IgnoreCase);
                     var f = match.Groups[1].Value.ToUpper();
                     var n = match.Groups[2].Value;
-                    if (f == "D")
-                        methodName = "toString()";
-                    else if (f == "E")
-                        methodName = "toExponential(" + n + ")";
-                    else if (f == "F" || f == "G")
-                        methodName = "toFixed(" + n + ")";
-                    else if (f == "N")
+                    switch (f)
                     {
-                        var undefined = Options.UndefinedLiteral;
-                        if (string.IsNullOrEmpty(n))
-                            methodName = "toLocaleString()";
-                        else
-                            methodName = string.Format(
-                                "toLocaleString({0},{{minimumFractionDigits:{1}}})",
-                                undefined,
-                                n);
+                        case "D":
+                            methodName = "toString()";
+                            break;
+                        case "E":
+                            methodName = "toExponential(" + n + ")";
+                            break;
+                        case "F":
+                        case "G":
+                            methodName = "toFixed(" + n + ")";
+                            break;
+                        case "N":
+                        {
+                            var undefined = Options.UndefinedLiteral;
+                            methodName = string.IsNullOrEmpty(n) ? "toLocaleString()" : $"toLocaleString({undefined},{{minimumFractionDigits:{n}}})";
+                            break;
+                        }
+                        case "X":
+                            methodName = "toString(16)";
+                            break;
                     }
-                    else if (f == "X")
-                        methodName = "toString(16)";
                 }
 
                 if (methodName != null)
@@ -1186,7 +1186,8 @@ namespace core
             }
 
             if (!node.Method.IsStatic)
-                throw new NotSupportedException(string.Format("By default, Lambda2Js cannot convert custom instance methods, only static ones. `{0}` is not static.", node.Method.Name));
+                throw new NotSupportedException(
+                    $"By default, Lambda2Js cannot convert custom instance methods, only static ones. `{node.Method.Name}` is not static.");
 
             using (resultWriter.Operation(JavascriptOperationTypes.Call))
                 if (node.Method.DeclaringType != null)

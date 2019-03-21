@@ -48,7 +48,7 @@ namespace core
         public static bool IsDictionaryType([NotNull] Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             if (typeof(IDictionary).IsAssignableFrom(type))
                 return true;
@@ -66,7 +66,7 @@ namespace core
         public static bool IsListType([NotNull] Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             if (typeof(ICollection).IsAssignableFrom(type))
                 return true;
@@ -84,7 +84,7 @@ namespace core
         public static bool IsEnumerableType(Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             if (typeof(IEnumerable).IsAssignableFrom(type))
                 return true;

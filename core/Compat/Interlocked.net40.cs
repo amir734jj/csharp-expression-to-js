@@ -2,7 +2,7 @@
 
 namespace core.Compat
 {
-    class Interlocked
+    public static class Interlocked
     {
         public static void MemoryBarrier()
         {
