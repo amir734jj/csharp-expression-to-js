@@ -42,7 +42,9 @@ namespace core
             var cnt = _operandTypes.Count;
 
             if (cnt < 2)
+            {
                 return true;
+            }
 
             var current = _operandTypes[cnt - 1];
             var parent = _operandTypes[cnt - 2];

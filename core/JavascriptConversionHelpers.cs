@@ -48,7 +48,7 @@ namespace core
             IEnumerable<Expression> nodes)
         {
             var writer = context.GetWriter();
-            int count = 0;
+            var count = 0;
             foreach (var node in nodes)
             {
                 if (count++ > 0)

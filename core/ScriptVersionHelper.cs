@@ -87,12 +87,12 @@ namespace core
             if (spec == 0 && specVersion != 0)
                 throw new ArgumentException("Specification version must be zero when no specification is passed.", nameof(specVersion));
 
-            var specVerFld = specVersion * Consts.SVerFld;
-            if (specVerFld >= Consts.SVerLim)
+            var specVerFld = specVersion * Consts.VerFld;
+            if (specVerFld >= Consts.VerLim)
                 throw new ArgumentException("Specification version overflow.", nameof(specVersion));
 
-            var ecmaVerFld = ecmaVersion * Consts.EcmaFld;
-            if (ecmaVerFld >= Consts.EcmaLim)
+            var ecmaVerFld = ecmaVersion * Consts.Fld;
+            if (ecmaVerFld >= Consts.Lim)
                 throw new ArgumentException("ECMAScript version overflow.", nameof(ecmaVersion));
 
             var flags = (allowProposals ? 1 : 0) + (allowDeprecated ? 2 : 0);
@@ -259,7 +259,7 @@ namespace core
         /// <returns></returns>
         public static int GetSpecificationVersion(this ScriptVersion scriptVersion)
         {
-            return ((int)scriptVersion % Consts.SVerLim) / Consts.SVerFld;
+            return ((int)scriptVersion % Consts.VerLim) / Consts.VerFld;
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace core
         /// <returns></returns>
         public static int GetStandardVersion(this ScriptVersion scriptVersion)
         {
-            return ((int)scriptVersion % Consts.EcmaLim) / Consts.EcmaFld;
+            return ((int)scriptVersion % Consts.Lim) / Consts.Fld;
         }
 
         /// <summary>

@@ -45,7 +45,7 @@ namespace core.Tests
         [Fact]
         public void LinqWhere()
         {
-            Expression<Func<MyClass, object>> expr = x => x.Phones.Where(p => p.DDD == 21);
+            Expression<Func<MyClass, object>> expr = x => x.Phones.Where(p => p.Ddd == 21);
             var js = expr.CompileToJavascript();
             Assert.Equal("System.Linq.Enumerable.Where(Phones,function(p){return p.DDD===21;})", js);
         }
@@ -61,7 +61,7 @@ namespace core.Tests
         [Fact]
         public void LinqFirstOrDefault()
         {
-            Expression<Func<MyClass, object>> expr = x => x.Phones.FirstOrDefault(p => p.DDD > 10);
+            Expression<Func<MyClass, object>> expr = x => x.Phones.FirstOrDefault(p => p.Ddd > 10);
             var js = expr.CompileToJavascript();
             Assert.Equal("System.Linq.Enumerable.FirstOrDefault(Phones,function(p){return p.DDD>10;})", js);
         }
@@ -109,7 +109,7 @@ namespace core.Tests
         [Fact]
         public void OrElseOperator()
         {
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].DDD == 32 || x.Phones.Length != 1;
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 || x.Phones.Length != 1;
             var js = expr.CompileToJavascript();
             Assert.Equal("PhonesByName[\"Miguel\"].DDD===32||Phones.length!==1", js);
         }
@@ -117,7 +117,7 @@ namespace core.Tests
         [Fact]
         public void OrOperator()
         {
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].DDD == 32 | x.Phones.Length != 1;
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 | x.Phones.Length != 1;
             var js = expr.CompileToJavascript();
             Assert.Equal("PhonesByName[\"Miguel\"].DDD===32|Phones.length!==1", js);
         }
@@ -270,7 +270,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void Regex1b()
+        public void Regex1B()
         {
             Expression<Func<Regex>> expr = () => new Regex(@"^\d{4}-\d\d-\d\d$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             var js = expr.Body.CompileToJavascript();
@@ -591,7 +591,7 @@ namespace core.Tests
         [Fact]
         public void UseEnclosedValues()
         {
-            int value = 0;
+            var value = 0;
             Expression<Func<int>> expr = () => value;
             value = 1;
             var js1 = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly));
@@ -767,6 +767,6 @@ namespace core.Tests
 
     class Phone
     {
-        public int DDD { get; set; }
+        public int Ddd { get; set; }
     }
 }

@@ -134,8 +134,7 @@ namespace core
 
         private Accessors GetAccessors(Type type)
         {
-            Accessors value;
-            if (_accessors.TryGetValue(type, out value))
+            if (_accessors.TryGetValue(type, out var value))
                 return value;
 
             lock (_locker)

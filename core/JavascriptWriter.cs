@@ -25,10 +25,7 @@ namespace core
         /// <summary>
         /// Gets the length of the rendered Javascript code so far.
         /// </summary>
-        public int Length
-        {
-            get { return result.Length; }
-        }
+        public int Length => result.Length;
 
         /// <summary>
         /// Uses the precedence operator only if needed. i.e. '(' operations ')'.

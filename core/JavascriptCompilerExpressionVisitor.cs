@@ -83,10 +83,8 @@ namespace core
                 || node.NodeType == ExpressionType.NotEqual)
             {
                 var binary = (BinaryExpression)node;
-                var left = binary.Left as UnaryExpression;
-                var leftVal = left != null && (left.NodeType == ExpressionType.Convert || left.NodeType == ExpressionType.ConvertChecked) ? left.Operand : binary.Left;
-                var right = binary.Right as UnaryExpression;
-                var rightVal = right != null && (right.NodeType == ExpressionType.Convert || right.NodeType == ExpressionType.ConvertChecked) ? right.Operand : binary.Right;
+                var leftVal = binary.Left is UnaryExpression left && (left.NodeType == ExpressionType.Convert || left.NodeType == ExpressionType.ConvertChecked) ? left.Operand : binary.Left;
+                var rightVal = binary.Right is UnaryExpression right && (right.NodeType == ExpressionType.Convert || right.NodeType == ExpressionType.ConvertChecked) ? right.Operand : binary.Right;
                 if (rightVal.Type != leftVal.Type)
                 {
                     if (leftVal.Type.IsEnum && TypeHelpers.IsNumericType(rightVal.Type) && rightVal.NodeType == ExpressionType.Constant)
@@ -446,7 +444,7 @@ namespace core
                 }
             }
 
-            bool isClosure = false;
+            var isClosure = false;
             using (resultWriter.Operation(node))
             {
                 var metadataProvider = Options.GetMetadataProvider();
@@ -592,7 +590,7 @@ namespace core
                     resultWriter.Write('{');
 
                     var posStart = resultWriter.Length;
-                    for (int itMember = 0; itMember < node.Members.Count; itMember++)
+                    for (var itMember = 0; itMember < node.Members.Count; itMember++)
                     {
                         var member = node.Members[itMember];
                         if (resultWriter.Length > posStart)
@@ -683,8 +681,7 @@ namespace core
                         {
                             resultWriter.Write(',');
 
-                            var optsConst = node.Arguments[1] as ConstantExpression;
-                            if (optsConst == null)
+                            if (!(node.Arguments[1] is ConstantExpression optsConst))
                                 throw new NotSupportedException("The options parameter of a Regex must be constant");
 
                             var options = (RegexOptions)optsConst.Value;

@@ -21,10 +21,25 @@ namespace core
         /// <returns></returns>
         protected static Type GetTypeOfExpression(Expression expression)
         {
-            if (expression.NodeType == ExpressionType.Convert || expression.NodeType == ExpressionType.ConvertChecked)
-                if (expression.Type.IsAssignableFrom(((UnaryExpression)expression).Operand.Type))
-                    return GetTypeOfExpression(((UnaryExpression)expression).Operand);
-            return expression.Type;
+            while (true)
+            {
+                switch (expression.NodeType)
+                {
+                    case ExpressionType.Convert:
+                    case ExpressionType.ConvertChecked:
+                    {
+                        if (expression.Type.IsAssignableFrom(((UnaryExpression) expression).Operand.Type))
+                        {
+                            expression = ((UnaryExpression) expression).Operand;
+                            continue;
+                        }
+
+                        break;
+                    }
+                }
+
+                return expression.Type;
+            }
         }
     }
 }

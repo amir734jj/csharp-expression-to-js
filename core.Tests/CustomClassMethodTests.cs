@@ -45,8 +45,7 @@ namespace core.Tests
         {
             public override void ConvertToJavascript(JavascriptConversionContext context)
             {
-                var methodCall = context.Node as MethodCallExpression;
-                if (methodCall != null)
+                if (context.Node is MethodCallExpression methodCall)
                     if (methodCall.Method.DeclaringType == typeof(MyCustomClass))
                     {
                         switch (methodCall.Method.Name)

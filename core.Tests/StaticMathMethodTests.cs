@@ -80,7 +80,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathPI()
+        public void MathPi()
         {
             Expression<Func<MyClass, double>> expr = o => Math.PI;
 

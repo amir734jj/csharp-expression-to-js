@@ -6,7 +6,7 @@ namespace core.Plugins
 {
     public class StaticMathMethods : JavascriptConversionExtension
     {
-        struct NameLength
+        private struct NameLength
         {
             public string name;
             public byte length;
@@ -89,21 +89,19 @@ namespace core.Plugins
                 { "Tanh", new NameLength { name = "tanh",   length = 1 } }
             };
 
-        private bool round2;
+        private readonly bool round2;
 
-        public StaticMathMethods(bool round2 = false, bool catchEandPI = false)
+        public StaticMathMethods(bool round2 = false)
         {
             this.round2 = round2;
         }
 
         public override void ConvertToJavascript(JavascriptConversionContext context)
         {
-            var methodCall = context.Node as MethodCallExpression;
-            if (methodCall != null)
+            if (context.Node is MethodCallExpression methodCall)
                 if (methodCall.Method.DeclaringType == typeof(Math))
                 {
-                    NameLength jsInfo;
-                    if (membersMap.TryGetValue(methodCall.Method.Name, out jsInfo))
+                    if (membersMap.TryGetValue(methodCall.Method.Name, out var jsInfo))
                         if (methodCall.Arguments.Count == jsInfo.length)
                         {
                             context.PreventDefault();
@@ -192,8 +190,7 @@ namespace core.Plugins
             // E and PI are constant values, they will never result in
             // a member access expression. We will have to catch the
             // exact numbers, and convert them instead.
-            var constVal = context.Node as ConstantExpression;
-            if (constVal != null)
+            if (context.Node is ConstantExpression constVal)
                 if (constVal.Value.Equals(Math.E))
                 {
                     context.PreventDefault();

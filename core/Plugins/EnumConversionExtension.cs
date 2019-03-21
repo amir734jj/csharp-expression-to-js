@@ -15,12 +15,11 @@ namespace core.Plugins
 
         public override void ConvertToJavascript(JavascriptConversionContext context)
         {
-            var cte = context.Node as ConstantExpression;
-            if (cte != null && cte.Type.IsEnum)
+            if (context.Node is ConstantExpression cte && cte.Type.IsEnum)
             {
                 context.PreventDefault();
                 var writer = context.GetWriter();
-                long remaining = Convert.ToInt64(cte.Value);
+                var remaining = Convert.ToInt64(cte.Value);
                 var flagsAsString = (opts & EnumOptions.FlagsAsStringWithSeparator) != 0;
                 var flagsAsOrs = (opts & EnumOptions.FlagsAsNumericOrs) != 0;
                 var flagsAsArray = (opts & EnumOptions.FlagsAsArray) != 0;
@@ -36,7 +35,7 @@ namespace core.Plugins
                 // reading enum composition
                 var values = Enum.GetValues(cte.Type);
                 var selected = new List<int>();
-                for (int itV = 0; itV < values.Length; itV++)
+                for (var itV = 0; itV < values.Length; itV++)
                 {
                     var val = Convert.ToInt64(values.GetValue(values.Length - itV - 1));
                     if ((val & remaining) == val)
@@ -53,11 +52,10 @@ namespace core.Plugins
                 {
                     var cnt = selected.Count + (remaining != 0 ? 1 : 0);
 
-
                     PrecedenceController xpto = null;
-                    string start = "";
-                    string separator = "";
-                    string end = "";
+                    var start = "";
+                    var separator = "";
+                    var end = "";
 
                     if (flagsAsString)
                     {
@@ -89,7 +87,7 @@ namespace core.Plugins
                     {
                         writer.Write(start);
                         var pos0 = writer.Length;
-                        for (int itIdx = 0; itIdx < selected.Count; itIdx++)
+                        for (var itIdx = 0; itIdx < selected.Count; itIdx++)
                         {
                             if (pos0 != writer.Length)
                                 writer.Write(separator);

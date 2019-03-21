@@ -12,7 +12,7 @@ namespace core.Tests
     {
         public void LinqWhere1()
         {
-            Expression<Func<JSArray, object>> expr = array => array.RemoveAt(2);
+            Expression<Func<JsArray, object>> expr = array => array.RemoveAt(2);
 
             var extension = new CustomMethods();
             var js = expr.CompileToJavascript(
@@ -59,7 +59,7 @@ namespace core.Tests
                 javascriptWriter.Write(nameAttribute.Name);
                 javascriptWriter.Write("(");
 
-                for (int i = 0; i < methodCallExpression.Arguments.Count; i++)
+                for (var i = 0; i < methodCallExpression.Arguments.Count; i++)
                 {
                     var name = "arg_" + Parameters.Count;
                     if (i != 0)
@@ -69,7 +69,7 @@ namespace core.Tests
                 }
                 if (nameAttribute.PositionalArguments != null)
                 {
-                    for (int i = methodCallExpression.Arguments.Count;
+                    for (var i = methodCallExpression.Arguments.Count;
                         i < nameAttribute.PositionalArguments.Length;
                         i++)
                     {
@@ -83,10 +83,10 @@ namespace core.Tests
             }
         }
 
-        public class JSArray
+        public class JsArray
         {
             [JavascriptMethodName("splice", PositionalArguments = new object[] { 0, 1 })]
-            public JSArray RemoveAt(int index)
+            public JsArray RemoveAt(int index)
             {
                 throw new NotSupportedException("Never called");
             }

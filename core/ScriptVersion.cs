@@ -18,39 +18,39 @@ namespace core
         //MsJ50 = Es20 + MsJ + 50 * Consts.ImpvFld,
 
         /// <summary> ECMAScript 3 (December 1999) </summary>
-        Es30 = 30 * Consts.EcmaFld,
+        Es30 = 30 * Consts.Fld,
         /// <summary> JavaScript 1.5 </summary>
-        Js15 = Es30 + Js + 150 * Consts.SVerFld,
+        Js15 = Es30 + Js + 150 * Consts.VerFld,
         /// <summary> Microsoft JScript 5.5 </summary>
-        MsJ55 = Es30 + MsJ + 55 * Consts.SVerFld,
+        MsJ55 = Es30 + MsJ + 55 * Consts.VerFld,
 
         /// <summary> ECMAScript 5 (December 2009) </summary>
-        Es50 = 50 * Consts.EcmaFld,
+        Es50 = 50 * Consts.Fld,
         /// <summary> JavaScript 1.8.1 </summary>
-        Js181 = Es50 + Js + 181 * Consts.SVerFld,
+        Js181 = Es50 + Js + 181 * Consts.VerFld,
         /// <summary> Microsoft JScript 9.0 </summary>
-        MsJ90 = Es50 + MsJ + 90 * Consts.SVerFld,
+        MsJ90 = Es50 + MsJ + 90 * Consts.VerFld,
 
         /// <summary> ECMAScript 5.1 (June 2011) </summary>
-        Es51 = 51 * Consts.EcmaFld,
+        Es51 = 51 * Consts.Fld,
 
         /// <summary> ECMAScript 6 (June 2015) </summary>
-        Es60 = 60 * Consts.EcmaFld,
+        Es60 = 60 * Consts.Fld,
         /// <summary> ECMAScript 6 (June 2015) </summary>
         ECMAScript2015 = Es60,
 
         /// <summary> ECMAScript 7 (June 2016) </summary>
-        Es70 = 70 * Consts.EcmaFld,
+        Es70 = 70 * Consts.Fld,
         /// <summary> ECMAScript 7 (June 2016) </summary>
         ECMAScript2016 = Es70,
 
         /// <summary> ECMAScript 8 (Draft) (may break compatibility) </summary>
-        Es80 = 80 * Consts.EcmaFld,
+        Es80 = 80 * Consts.Fld,
         /// <summary> ECMAScript 8 (Draft) (may break compatibility) </summary>
         ECMAScript2017 = Es80,
 
         /// <summary> ECMAScript latest stable version (may break compatibility) </summary>
-        EsLatestStable = Consts.EcmaLim - Consts.EcmaFld,
+        EsLatestStable = Consts.Lim - Consts.Fld,
 
         /// <summary> ECMAScript Next (may break compatibility) </summary>
         EsNext = EsLatestStable + Proposals,
@@ -73,11 +73,11 @@ namespace core
     {
         internal const int FlagFld = 0x1;
 
-        internal const int EcmaFld = 100;
-        internal const int EcmaLim = 100000;
+        internal const int Fld = 100;
+        internal const int Lim = 100000;
 
-        internal const int SVerFld = 100000;
-        internal const int SVerLim = 100000000;
+        internal const int VerFld = 100000;
+        internal const int VerLim = 100000000;
 
         internal const int SpecFld = 100000000;
     }

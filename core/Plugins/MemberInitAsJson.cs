@@ -52,8 +52,7 @@ namespace core.Plugins
 
         public override void ConvertToJavascript(JavascriptConversionContext context)
         {
-            var initExpr = context.Node as MemberInitExpression;
-            if (initExpr == null)
+            if (!(context.Node is MemberInitExpression initExpr))
                 return;
             var typeOk1 = NewObjectTypes?.Contains(initExpr.Type) ?? false;
             var typeOk2 = TypePredicate?.Invoke(initExpr.Type) ?? false;

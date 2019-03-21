@@ -50,7 +50,7 @@ namespace core.Tests
         [Fact]
         public void EnumCompareWithEnclosed()
         {
-            SomeFlagsEnum enclosed = SomeFlagsEnum.B;
+            var enclosed = SomeFlagsEnum.B;
             Expression<Func<MyClassWithEnum, bool>> expr = o => o.SomeFlagsEnum == (SomeFlagsEnum.A ^ ~enclosed);
             var js = expr.CompileToJavascript();
             Assert.Equal(@"SomeFlagsEnum===(1^~2)", js);
@@ -182,8 +182,7 @@ namespace core.Tests
     {
         public override void ConvertToJavascript(JavascriptConversionContext context)
         {
-            var methodCall = context.Node as MethodCallExpression;
-            if (methodCall != null)
+            if (context.Node is MethodCallExpression methodCall)
                 if (methodCall.Method.DeclaringType == typeof(MyClassWithEnum))
                 {
                     switch (methodCall.Method.Name)
