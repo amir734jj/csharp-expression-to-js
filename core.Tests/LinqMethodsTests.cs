@@ -10,7 +10,7 @@ namespace core.Tests
     public class LinqMethodsTests
     {
         [Fact]
-        public void LinqWhere1()
+        public void Test__LinqWhere1()
         {
             Expression<Func<string[], IEnumerable<string>>> expr = array => array.Where(x => x == "Miguel");
 
@@ -22,7 +22,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqSelect1()
+        public void Test__LinqSelect1()
         {
             Expression<Func<string[], IEnumerable<char>>> expr = array => array.Select(x => x[0]);
 
@@ -34,7 +34,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqToArray1()
+        public void Test__LinqToArray1()
         {
             Expression<Func<string[], IEnumerable<string>>> expr = array => array.ToArray();
 
@@ -46,7 +46,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void LinqToArrayEs6()
+        public void Test__LinqToArrayEs6()
         {
             Expression<Func<string[], IEnumerable<string>>> expr = array => array.ToArray();
 

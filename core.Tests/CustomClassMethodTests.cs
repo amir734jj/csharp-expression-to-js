@@ -69,7 +69,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CombiningMultipleExtensions()
+        public void Test__CombiningMultipleExtensions()
         {
             Expression<Func<string>> expr = () => string.Concat(MyCustomClass.GetValue(1) * 2, "XYZ");
 
@@ -83,7 +83,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CombiningMultipleExtensions2()
+        public void Test__CombiningMultipleExtensions2()
         {
             Expression<Func<string>> expr = () => string.Concat(MyCustomClass.GetValue());
 
@@ -97,7 +97,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NewCustomClassAsJson()
+        public void Test__NewCustomClassAsJson()
         {
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
 
@@ -109,7 +109,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NewClassAsJson()
+        public void Test__NewClassAsJson()
         {
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
 
@@ -122,7 +122,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NewCustomClassAsNewOfType()
+        public void Test__NewCustomClassAsNewOfType()
         {
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass("Miguel");
 
@@ -132,7 +132,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void NewCustomClassAsNewOfTypeWithMemberInit()
+        public void Test__NewCustomClassAsNewOfTypeWithMemberInit()
         {
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
 
@@ -150,7 +150,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CustomMetadata1()
+        public void Test__CustomMetadata1()
         {
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom;
             var js = expr.CompileToJavascript();
@@ -158,7 +158,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CustomMetadata2()
+        public void Test__CustomMetadata2()
         {
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom2;
             var js = expr.CompileToJavascript();
@@ -166,7 +166,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void CustomMetadata3()
+        public void Test__CustomMetadata3()
         {
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom3;
             var js = expr.CompileToJavascript();
@@ -188,7 +188,7 @@ namespace core.Tests
         public delegate object MyFuncDef(string name);
 
         [Fact]
-        public void CustomMetadataInMemberInit()
+        public void Test__CustomMetadataInMemberInit()
         {
             Expression<MyFuncDef> expr = name => new MyClass
             {

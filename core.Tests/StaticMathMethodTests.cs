@@ -8,7 +8,7 @@ namespace core.Tests
     public class StaticMathMethodTests
     {
         [Fact]
-        public void MathPow()
+        public void Test__MathPow()
         {
             Expression<Func<MyClass, double>> expr = o => Math.Pow(o.Age, 2.0);
 
@@ -20,7 +20,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathLog()
+        public void Test__MathLog()
         {
             Expression<Func<MyClass, double>> expr = o => Math.Log(o.Age) + 1;
 
@@ -32,7 +32,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathLog2Args()
+        public void Test__MathLog2Args()
         {
             Expression<Func<MyClass, double>> expr = o => Math.Log(o.Age, 2.0) + 1;
 
@@ -44,7 +44,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathRound()
+        public void Test__MathRound()
         {
             Expression<Func<MyClass, double>> expr = o => Math.Round(o.Age / 0.7);
 
@@ -56,7 +56,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathRound2Args()
+        public void Test__MathRound2Args()
         {
             Expression<Func<MyClass, double>> expr = o => Math.Round(o.Age / 0.7, 2);
 
@@ -68,7 +68,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathE()
+        public void Test__MathE()
         {
             Expression<Func<MyClass, double>> expr = o => Math.E;
 
@@ -80,7 +80,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void MathPi()
+        public void Test__MathPi()
         {
             Expression<Func<MyClass, double>> expr = o => Math.PI;
 

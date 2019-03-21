@@ -10,12 +10,6 @@ namespace core
         /// Compiles a lambda expression to JavaScript code.
         /// </summary>
         /// <param name="expr">Expression to compile to JavaScript.</param>
-        /// <param name="options">
-        /// Conversion options:
-        /// whether to include only the body of the lambda,
-        /// whether to use a single scope parameter,
-        /// what extensions to use (i.e. StaticStringMethods, StaticMathMethods, or any other custom extensions).
-        /// </param>
         /// <param name="scriptVersion"></param>
         /// <param name="extensions"></param>
         /// <returns>JavaScript code represented as a string.</returns>
@@ -41,7 +35,9 @@ namespace core
         public static string CompileToJavascript([NotNull] this LambdaExpression expr, JavascriptCompilationOptions options = null)
         {
             if (expr == null)
+            {
                 throw new ArgumentNullException(nameof(expr));
+            }
 
             options = options ?? JavascriptCompilationOptions.DefaultOptions;
 

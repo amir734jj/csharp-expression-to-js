@@ -8,7 +8,7 @@ namespace core.Tests
     public class StaticStringMethodsTests
     {
         [Fact]
-        public void StringConcat0()
+        public void Test__StringConcat0()
         {
             Expression<Func<MyClass, string>> expr = o => string.Concat("A", "B");
 
@@ -20,7 +20,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringConcat1()
+        public void Test__StringConcat1()
         {
             Expression<Func<MyClass, string>> expr = o => string.Concat(1, 2);
 
@@ -32,7 +32,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringEmpty()
+        public void Test__StringEmpty()
         {
             Expression<Func<MyClass, string>> expr = o => string.Empty;
             var js = expr.CompileToJavascript();
@@ -40,7 +40,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringJoin()
+        public void Test__StringJoin()
         {
             Expression<Func<MyClass, string>> expr = o => string.Join<Phone>(",", o.Phones);
 
@@ -52,7 +52,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringJoin2()
+        public void Test__StringJoin2()
         {
             Expression<Func<MyClass, string>> expr =
                 o => string.Join(" ", "Miguel", "Angelo", "Santos", "Bicudo");
@@ -65,7 +65,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringConcat()
+        public void Test__StringConcat()
         {
             Expression<Func<MyClass, string>> expr = o => string.Concat(o.Name, ":", o.Age + 10);
 
@@ -77,7 +77,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringConcatContains()
+        public void Test__StringConcatContains()
         {
             Expression<Func<MyClass, bool>> expr = o => string.Concat(o.Name, ":", o.Age + 10).Contains("30");
 
@@ -96,7 +96,7 @@ namespace core.Tests
         }
 
         [Fact]
-        public void StringConcat2()
+        public void Test__StringConcat2()
         {
             Expression<Func<MyClass, string>> expr = o => string.Concat(10, ":", 20);
 

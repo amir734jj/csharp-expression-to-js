@@ -10,7 +10,7 @@ namespace core.Tests
 {
     public class UsingCustomMethods
     {
-        public void LinqWhere1()
+        public void Test__LinqWhere1()
         {
             Expression<Func<JsArray, object>> expr = array => array.RemoveAt(2);
 
@@ -38,7 +38,8 @@ namespace core.Tests
 
         public class CustomMethods : JavascriptConversionExtension
         {
-            public Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            public readonly Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            
             public override void ConvertToJavascript(JavascriptConversionContext context)
             {
                 var methodCallExpression = context.Node as MethodCallExpression;

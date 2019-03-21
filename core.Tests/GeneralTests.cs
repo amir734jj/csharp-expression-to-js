@@ -405,7 +405,7 @@ namespace core.Tests
         [Fact]
         public void Test__StringLastIndexOf()
         {
-            Expression<Func<MyClass, bool>> expr = o => o.Name.LastIndexOf("!") == 1;
+            Expression<Func<MyClass, bool>> expr = o => o.Name.LastIndexOf("!", StringComparison.Ordinal) == 1;
             var js = expr.CompileToJavascript();
             Assert.Equal("Name.lastIndexOf(\"!\")===1", js);
         }
@@ -413,7 +413,7 @@ namespace core.Tests
         [Fact]
         public void Test__StringIndexOf()
         {
-            Expression<Func<MyClass, bool>> expr = o => o.Name.IndexOf("!") == 1;
+            Expression<Func<MyClass, bool>> expr = o => o.Name.IndexOf("!", StringComparison.Ordinal) == 1;
             var js = expr.CompileToJavascript();
             Assert.Equal("Name.indexOf(\"!\")===1", js);
         }

@@ -208,7 +208,7 @@ namespace core.Tests
         }
     }
 
-    class MyClassWithEnum : MyClass
+    internal class MyClassWithEnum : MyClass
     {
         public SomeFlagsEnum SomeFlagsEnum { get; }
         public SomeLongEnum SomeLongEnum { get; }
@@ -217,28 +217,28 @@ namespace core.Tests
     }
 
     [Flags]
-    enum SomeFlagsEnum
+    internal enum SomeFlagsEnum
     {
         A = 1,
         B = 2
     }
 
     [Flags]
-    enum SomeStrangeFlagsEnum
+    internal enum SomeStrangeFlagsEnum
     {
         A = 0x011,
         B = 0x101,
         C = 0x110
     }
 
-    enum SomeLongEnum : long
+    internal enum SomeLongEnum : long
     {
         A = 1,
         B = 2
     }
 
     [Flags]
-    enum SomeUnorderedFlagsEnum
+    internal enum SomeUnorderedFlagsEnum
     {
         AB = 3,
         A = 1,
