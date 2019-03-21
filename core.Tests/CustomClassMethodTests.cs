@@ -71,28 +71,34 @@ namespace core.Tests
         [Fact]
         public void Test__CombiningMultipleExtensions()
         {
+            // Arrange
             Expression<Func<string>> expr = () => string.Concat(MyCustomClass.GetValue(1) * 2, "XYZ");
 
+            // Acr
             var js = expr.CompileToJavascript(
                 new JavascriptCompilationOptions(
                     JsCompilationFlags.BodyOnly,
                     new MyCustomClassMethods(),
                     new StaticStringMethods()));
 
+            // Assert
             Assert.Equal("''+Xpto.GetValue(1)*2+\"XYZ\"", js);
         }
 
         [Fact]
         public void Test__CombiningMultipleExtensions2()
         {
+            // Arrange
             Expression<Func<string>> expr = () => string.Concat(MyCustomClass.GetValue());
 
+            // Act
             var js = expr.CompileToJavascript(
                 new JavascriptCompilationOptions(
                     JsCompilationFlags.BodyOnly,
                     new MyCustomClassMethods(),
                     new StaticStringMethods()));
 
+            // Assert
             Assert.Equal("''+Xpto.GetValue()", js);
         }
 
@@ -124,16 +130,20 @@ namespace core.Tests
         [Fact]
         public void Test__NewCustomClassAsNewOfType()
         {
+            // Arrange
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass("Miguel");
 
+            // Act
             var js = expr.Body.CompileToJavascript();
 
+            // Assert
             Assert.Equal("new core.Tests.CustomClassMethodTests.MyCustomClass(\"Miguel\")", js);
         }
 
         [Fact]
         public void Test__NewCustomClassAsNewOfTypeWithMemberInit()
         {
+            // Arrange
             Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
 
             Exception exception = null;
@@ -152,24 +162,39 @@ namespace core.Tests
         [Fact]
         public void Test__CustomMetadata1()
         {
+            // Arrange
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom;
+            
+            // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"otherName", js);
         }
 
         [Fact]
         public void Test__CustomMetadata2()
         {
+            // Arrange
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom2;
+            
+            // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"otherName2", js);
         }
 
         [Fact]
         public void Test__CustomMetadata3()
         {
+            // Arrange
             Expression<Func<MyCustomClass, string>> expr = o => o.Custom3;
+            
+            // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"Custom3", js);
         }
 

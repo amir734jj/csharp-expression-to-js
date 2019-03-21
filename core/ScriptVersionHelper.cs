@@ -259,7 +259,7 @@ namespace core
         /// <returns></returns>
         public static int GetSpecificationVersion(this ScriptVersion scriptVersion)
         {
-            return ((int)scriptVersion % Consts.VerLim) / Consts.VerFld;
+            return (int)scriptVersion % Consts.VerLim / Consts.VerFld;
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace core
         /// <returns></returns>
         public static int GetStandardVersion(this ScriptVersion scriptVersion)
         {
-            return ((int)scriptVersion % Consts.Lim) / Consts.Fld;
+            return (int)scriptVersion % Consts.Lim / Consts.Fld;
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace core
         /// <returns></returns>
         public static ScriptVersion GetSpecification(this ScriptVersion scriptVersion)
         {
-            return (ScriptVersion)(((int)scriptVersion / Consts.SpecFld) * Consts.SpecFld);
+            return (ScriptVersion)((int)scriptVersion / Consts.SpecFld * Consts.SpecFld);
         }
 
         /// <summary>

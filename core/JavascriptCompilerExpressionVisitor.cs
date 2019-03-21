@@ -765,9 +765,7 @@ namespace core
             }
             else
             {
-                if (node.Method.DeclaringType != null
-                    && (node.Method.Name == "ContainsKey"
-                        && TypeHelpers.IsDictionaryType(node.Method.DeclaringType)))
+                if (node.Method.DeclaringType != null && node.Method.Name == "ContainsKey" && TypeHelpers.IsDictionaryType(node.Method.DeclaringType))
                 {
                     using (resultWriter.Operation(JavascriptOperationTypes.Call))
                     {

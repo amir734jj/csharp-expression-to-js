@@ -12,14 +12,17 @@ namespace core.Tests
     {
         public void Test__LinqWhere1()
         {
+            // Arrange
             Expression<Func<JsArray, object>> expr = array => array.RemoveAt(2);
-
             var extension = new CustomMethods();
+            
+            // Act
             var js = expr.CompileToJavascript(
                 new JavascriptCompilationOptions(
                     JsCompilationFlags.BodyOnly | JsCompilationFlags.ScopeParameter,
                     new LinqMethods(), extension));
 
+            // Assert
             Assert.Equal("array.splice(arg_0, 1)", js);
             Assert.Equal(2, ((ConstantExpression)extension.Parameters["arg_0"]).Value);
         }
