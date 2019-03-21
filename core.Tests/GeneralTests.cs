@@ -18,6 +18,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.ScopeParameter));
+            
+            // Assert
             Assert.Equal("function(Age,Name,Phones){return {Age:Age,Name:Name,Phones:Phones};}", js);
         }
 
@@ -29,6 +31,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.ScopeParameter | JsCompilationFlags.BodyOnly));
+            
+            // Assert
             Assert.Equal("{Age:Age,Name:Name,Phones:Phones}", js);
         }
 
@@ -37,7 +41,11 @@ namespace core.Tests
         {
             // Arrange
             Expression<Func<MyClass, object>> expr = x => new { x.Age, x.Name, x.Phones };
+            
+            // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0));
+            
+            // Assert
             Assert.Equal("function(x){return {Age:x.Age,Name:x.Name,Phones:x.Phones};}", js);
         }
 
@@ -49,6 +57,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly));
+            
+            // Assert
             Assert.Equal("{Age:x.Age,Name:x.Name,Phones:x.Phones}", js);
         }
 
@@ -60,6 +70,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("System.Linq.Enumerable.Where(Phones,function(p){return p.DDD===21;})", js);
         }
 
@@ -71,6 +83,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("System.Linq.Enumerable.Count(Phones)", js);
         }
 
@@ -82,6 +96,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("System.Linq.Enumerable.FirstOrDefault(Phones,function(p){return p.DDD>10;})", js);
         }
 
@@ -93,6 +109,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("Phones.length", js);
         }
 
@@ -104,6 +122,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("Phones[10]", js);
         }
 
@@ -115,6 +135,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("Phones.length", js);
         }
 
@@ -126,6 +148,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("PhonesByName[\"Miguel\"]", js);
         }
 
@@ -137,6 +161,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("PhonesByName.hasOwnProperty(\"Miguel\")", js);
         }
 
@@ -145,7 +171,11 @@ namespace core.Tests
         {
             // Arrange
             Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 || x.Phones.Length != 1;
+            
+            // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("PhonesByName[\"Miguel\"].DDD===32||Phones.length!==1", js);
         }
 
@@ -157,6 +187,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("PhonesByName[\"Miguel\"].DDD===32|Phones.length!==1", js);
         }
 
@@ -173,6 +205,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("{name:\"Miguel\",age:\"30\",\"birth-date\":\"1984-05-04\"}", js);
         }
 
@@ -227,6 +261,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("[1,2,3,\"Miguel\"]", js);
         }
 
@@ -238,6 +274,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("[1,2,3,\"Miguel\",function(){return 20;}]", js);
         }
 
@@ -253,6 +291,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("[[1,2],[3,4]]", js);
         }
 
@@ -264,6 +304,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("[1,2,3]", js);
         }
 
@@ -275,6 +317,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal("[1,2,3]", js);
         }
 
@@ -299,7 +343,11 @@ namespace core.Tests
                             list = new List<int> { 10, 20, 30 }
                         }
                 };
+            
+            // Act
             var js = expr.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"[{name:""Miguel"",age:30,func:function(y){return (y+10)*0.5;},list:[""a"",""b"",""c""]},{name:""André"",age:30,func:function(z){return z+5;},list:[10,20,30]}]", js);
         }
 
@@ -311,6 +359,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
+            
+            // Assert
             Assert.Equal(@"x=>1024+x", js);
         }
 
@@ -322,6 +372,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
+            
+            // Assert
             Assert.Equal(@"(x,y)=>y+x", js);
         }
 
@@ -333,6 +385,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(new JavascriptCompilationOptions(0, ScriptVersion.Es60));
+            
+            // Assert
             Assert.Equal(@"()=>1024", js);
         }
 
@@ -344,6 +398,8 @@ namespace core.Tests
             
             // Act
             var js = expr.Body.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"/^\d{4}-\d\d-\d\d$/gi", js);
         }
 
@@ -355,6 +411,8 @@ namespace core.Tests
             
             // Act
             var js = expr.Body.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"/^\d{4}-\d\d-\d\d$/gim", js);
         }
 
@@ -363,7 +421,11 @@ namespace core.Tests
         {
             // Arrange
             Expression<Func<Func<string, Regex>>> expr = () => p => new Regex(p, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            
+            // Act
             var js = expr.Body.CompileToJavascript();
+            
+            // Assert
             Assert.Equal(@"function(p){return new RegExp(p,'gim');}", js);
         }
 
