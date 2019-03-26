@@ -1185,7 +1185,7 @@ namespace core
 
             if (!node.Method.IsStatic)
                 throw new NotSupportedException(
-                    $"By default, Lambda2Js cannot convert custom instance methods, only static ones. `{node.Method.Name}` is not static.");
+                    $"By default, this library cannot convert custom instance methods, only static ones. `{node.Method.Name}` is not static.");
 
             using (resultWriter.Operation(JavascriptOperationTypes.Call))
                 if (node.Method.DeclaringType != null)

@@ -37,48 +37,44 @@ Clone using `ToArray` and targeting ES6:
 Developing custom plugins
 --------
 
-You can develop and use some prebuilt plugins. See the [readme.md in the Plugins folder](https://github.com/gearz-lab/lambda2js/tree/master/Lambda2Js/Plugins).
+# Plugins
 
-Building and testing
---------------------
+This library supports plugins that allows customizing the conversion process.
 
-***ATENTION!*** Please, run the **ProjectsGenerator**
-before doing any of these:
+We can tell the compiler that you want to use plugins when calling `CompileToJavascript` method.
 
-- build the signed assembly
-- running tests for specific frameworks
+Example
+-------
 
-Due to current Visual Studio limitations, I had to create
-a project generator to create some of the `csproj` files:
+Custom JavaScript output when calling a method in a custom class:
 
-- **Lambda2Js.Signed.csproj** is generated using the
-`Lambda2Js.csproj` as it's template. It will copy the
-package version to the FileVersion and to the
-AssemblyVersion fields to keep them consistent.
-Also, it adds the `".Signed"` string where appropriate
-in file names and in project name, and finally it
-includes a reference to the snk file.
+```csharp
+    public class MyCustomClassMethods : JavascriptConversionExtension
+    {
+        public override void ConvertToJavascript(JavascriptConversionContext context)
+        {
+            var methodCall = context.Node as MethodCallExpression;
+            if (methodCall != null)
+                // This is needed to prevent default method translation
+                context.PreventDefault ();
+                if (methodCall.Method.DeclaringType == typeof(MyCustomClass))
+                {
+                    switch (methodCall.Method.Name)
+                    {
+                        case "GetValue":
+                        {
+                            using (context.Operation(JavascriptOperationTypes.Call))
+                            {
+                                using (context.Operation(JavascriptOperationTypes.IndexerProperty))
+                                    context.Write("Xpto.GetValue");
 
-- **Lambda2Js.Tests.$(TargetFramework).csproj** are
-generated from `Lambda2Js.Tests.csproj`. That is needed
-because this project is a multitargeted test project,
-and Visual Studio cannot see the tests inside after
-compiling it... so what I dis was: create copy projects
-that have only one target framework for each of the
-possible targets.
+                                context.WriteManyIsolated('(', ')', ',', methodCall.Arguments);
+                            }
 
-**Testing**
-
-To test support on the .Net 4.0, you need to run the
-`Test.Net-v4.0.csproj` because this framework version
-does not support the native test attributes to do
-automatic testing.
-
-To test other framework versions, please, take a
-look at the `TargetedTests` solution folder. In that
-folder you will find all the tests. Unload all of them,
-but keep the framework version you want to test,
-then build it. Visual Studio will see the newly built
-tests and will list them. If the other frameworks test
-projects are not unloaded, Visual Studio may or may
-not list them.
+                            return;
+                        }
+                    }
+                }
+        }
+    }
+```

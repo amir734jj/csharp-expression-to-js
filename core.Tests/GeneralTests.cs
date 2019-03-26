@@ -561,6 +561,8 @@ namespace core.Tests
             
             // Act
             var js = expr.CompileToJavascript(ScriptVersion.Es50.NonStandard());
+            
+            // Assert
             Assert.Equal("Name.trimRight()===\"test\"", js);
         }
 

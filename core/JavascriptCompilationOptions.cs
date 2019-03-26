@@ -5,12 +5,12 @@ using System.Linq;
 namespace core
 {
     /// <summary>
-    /// Options that change how Lambda2Js converts to the resulting JavaScript.
+    /// Options that change how this library converts to the resulting JavaScript.
     /// </summary>
     public class JavascriptCompilationOptions
     {
         /// <summary>
-        /// Gets the default options used by Lambda2Js converts to JavaScript.
+        /// Gets the default options used by this library converts to JavaScript.
         /// </summary>
         public static readonly JavascriptCompilationOptions DefaultOptions = new JavascriptCompilationOptions();
 
