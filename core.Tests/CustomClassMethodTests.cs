@@ -106,46 +106,46 @@ namespace core.Tests
         [Fact]
         public void Test__NewCustomClassAsJson()
         {
-            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
+            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Amir" };
 
             var js = expr.Body.CompileToJavascript(
                 new JavascriptCompilationOptions(
                     new MemberInitAsJson(typeof(MyCustomClass))));
 
-            Assert.Equal("{Name:\"Miguel\"}", js);
+            Assert.Equal("{Name:\"Amir\"}", js);
         }
 
         [Fact]
         public void Test__NewClassAsJson()
         {
-            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
+            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Amir" };
 
             var js = expr.CompileToJavascript(
                 new JavascriptCompilationOptions(
                     (JsCompilationFlags)0,
                     MemberInitAsJson.ForAllTypes));
 
-            Assert.Equal("function(){return {Name:\"Miguel\"};}", js);
+            Assert.Equal("function(){return {Name:\"Amir\"};}", js);
         }
 
         [Fact]
         public void Test__NewCustomClassAsNewOfType()
         {
             // Arrange
-            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass("Miguel");
+            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass("Amir");
 
             // Act
             var js = expr.Body.CompileToJavascript();
 
             // Assert
-            Assert.Equal("new core.Tests.CustomClassMethodTests.MyCustomClass(\"Miguel\")", js);
+            Assert.Equal("new core.Tests.CustomClassMethodTests.MyCustomClass(\"Amir\")", js);
         }
 
         [Fact]
         public void Test__NewCustomClassAsNewOfTypeWithMemberInit()
         {
             // Arrange
-            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Miguel" };
+            Expression<Func<MyCustomClass>> expr = () => new MyCustomClass { Name = "Amir" };
 
             Exception exception = null;
             try

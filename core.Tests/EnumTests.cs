@@ -297,8 +297,11 @@ namespace core.Tests
     internal class MyClassWithEnum : MyClass
     {
         public SomeFlagsEnum SomeFlagsEnum { get; }
+        
         public SomeLongEnum SomeLongEnum { get; }
+        
         public SomeUnorderedFlagsEnum SomeUnorderedFlagsEnum { get; }
+        
         public void SetGender(SomeFlagsEnum someFlagsEnum) { }
     }
 

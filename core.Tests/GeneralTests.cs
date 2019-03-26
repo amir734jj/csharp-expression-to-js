@@ -145,52 +145,52 @@ namespace core.Tests
         public void Test__DictionaryItem()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"];
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Amir"];
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("PhonesByName[\"Miguel\"]", js);
+            Assert.Equal("PhonesByName[\"Amir\"]", js);
         }
 
         [Fact]
         public void Test__DictionaryContainsKey()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName.ContainsKey("Miguel");
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName.ContainsKey("Amir");
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("PhonesByName.hasOwnProperty(\"Miguel\")", js);
+            Assert.Equal("PhonesByName.hasOwnProperty(\"Amir\")", js);
         }
 
         [Fact]
         public void Test__OrElseOperator()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 || x.Phones.Length != 1;
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Amir"].Ddd == 32 || x.Phones.Length != 1;
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("PhonesByName[\"Miguel\"].DDD===32||Phones.length!==1", js);
+            Assert.Equal("PhonesByName[\"Amir\"].DDD===32||Phones.length!==1", js);
         }
 
         [Fact]
         public void Test__OrOperator()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Miguel"].Ddd == 32 | x.Phones.Length != 1;
+            Expression<Func<MyClass, object>> expr = x => x.PhonesByName["Amir"].Ddd == 32 | x.Phones.Length != 1;
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("PhonesByName[\"Miguel\"].DDD===32|Phones.length!==1", js);
+            Assert.Equal("PhonesByName[\"Amir\"].DDD===32|Phones.length!==1", js);
         }
 
         [Fact]
@@ -199,7 +199,7 @@ namespace core.Tests
             // Arrange
             Expression<Func<MyClass, object>> expr = x => new Dictionary<string, string>
                 {
-                    { "name", "Miguel" },
+                    { "name", "Amir" },
                     { "age", "30" },
                     { "birth-date", "1984-05-04" }
                 };
@@ -208,7 +208,7 @@ namespace core.Tests
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("{name:\"Miguel\",age:\"30\",\"birth-date\":\"1984-05-04\"}", js);
+            Assert.Equal("{name:\"Amir\",age:\"30\",\"birth-date\":\"1984-05-04\"}", js);
         }
 
         [Fact]
@@ -217,14 +217,14 @@ namespace core.Tests
             // Arrange
             Expression<Func<MyClass, object>> expr = x => new Hashtable
                 {
-                    { "name", "Miguel" },
+                    { "name", "Amir" },
                     { "age", 30 },
                     { "birth-date", "1984-05-04" }
                 };
             
             // Act
             var js = expr.CompileToJavascript();
-            Assert.Equal("{name:\"Miguel\",age:30,\"birth-date\":\"1984-05-04\"}", js);
+            Assert.Equal("{name:\"Amir\",age:30,\"birth-date\":\"1984-05-04\"}", js);
         }
 
         [Fact]
@@ -233,14 +233,14 @@ namespace core.Tests
             // Arrange
             Expression<Func<MyClass, object>> expr = x => new
             {
-                name = "Miguel",
+                name = "Amir",
                 age = 30,
                 birthDate = "1984-05-04"
             };
             
             // Act
             var js = expr.CompileToJavascript();
-            Assert.Equal("{name:\"Miguel\",age:30,birthDate:\"1984-05-04\"}", js);
+            Assert.Equal("{name:\"Amir\",age:30,birthDate:\"1984-05-04\"}", js);
         }
 
         [Fact]
@@ -258,26 +258,26 @@ namespace core.Tests
         public void Test__InlineNewArray2()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Miguel" };
+            Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Amir" };
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("[1,2,3,\"Miguel\"]", js);
+            Assert.Equal("[1,2,3,\"Amir\"]", js);
         }
 
         [Fact]
         public void Test__InlineNewArray3()
         {
             // Arrange
-            Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Miguel", (Func<int>)(() => 20) };
+            Expression<Func<MyClass, object>> expr = x => new object[] { 1, 2, 3, "Amir", (Func<int>)(() => 20) };
             
             // Act
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal("[1,2,3,\"Miguel\",function(){return 20;}]", js);
+            Assert.Equal("[1,2,3,\"Amir\",function(){return 20;}]", js);
         }
 
         [Fact]
@@ -331,7 +331,7 @@ namespace core.Tests
                 {
                     new Dictionary<string, object>
                         {
-                            { "name", "Miguel" },
+                            { "name", "Amir" },
                             { "age", 30 },
                             { "func", (Func<int, double>)(y => (y + 10) * 0.5) },
                             { "list", new List<string> { "a", "b", "c" } }
@@ -349,7 +349,7 @@ namespace core.Tests
             var js = expr.CompileToJavascript();
             
             // Assert
-            Assert.Equal(@"[{name:""Miguel"",age:30,func:function(y){return (y+10)*0.5;},list:[""a"",""b"",""c""]},{name:""André"",age:30,func:function(z){return z+5;},list:[10,20,30]}]", js);
+            Assert.Equal(@"[{name:""Amir"",age:30,func:function(y){return (y+10)*0.5;},list:[""a"",""b"",""c""]},{name:""André"",age:30,func:function(z){return z+5;},list:[10,20,30]}]", js);
         }
 
         [Fact]
@@ -456,24 +456,24 @@ namespace core.Tests
         public void Test__StringContains()
         {
             // Arrange
-            Expression<Func<MyClass, bool>> expr = o => o.Name.Contains("Miguel");
+            Expression<Func<MyClass, bool>> expr = o => o.Name.Contains("Amir");
             
             // Act
             var js = expr.CompileToJavascript();
-            Assert.Equal("Name.indexOf(\"Miguel\")>=0", js);
+            Assert.Equal("Name.indexOf(\"Amir\")>=0", js);
             js = expr.CompileToJavascript(ScriptVersion.Es60);
-            Assert.Equal("Name.includes(\"Miguel\")", js);
+            Assert.Equal("Name.includes(\"Amir\")", js);
         }
 
         [Fact]
         public void Test__StringContains2()
         {
             // Arrange
-            Expression<Func<MyClass, bool>> expr = o => "Miguel Angelo Santos Bicudo".Contains(o.Name);
+            Expression<Func<MyClass, bool>> expr = o => "Amir Angelo Santos Bicudo".Contains(o.Name);
             var js = expr.CompileToJavascript();
-            Assert.Equal("(\"Miguel Angelo Santos Bicudo\").indexOf(Name)>=0", js);
+            Assert.Equal("(\"Amir Angelo Santos Bicudo\").indexOf(Name)>=0", js);
             js = expr.CompileToJavascript(ScriptVersion.Es60);
-            Assert.Equal("(\"Miguel Angelo Santos Bicudo\").includes(Name)", js);
+            Assert.Equal("(\"Amir Angelo Santos Bicudo\").includes(Name)", js);
         }
 
         [Fact]

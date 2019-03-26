@@ -14,7 +14,7 @@ namespace core.Tests
         public void Test__LinqWhere1()
         {
             // Arrange
-            Expression<Func<string[], IEnumerable<string>>> expr = array => array.Where(x => x == "Miguel");
+            Expression<Func<string[], IEnumerable<string>>> expr = array => array.Where(x => x == "Amir");
 
             // Act
             var js = expr.CompileToJavascript(
@@ -22,7 +22,7 @@ namespace core.Tests
                     JsCompilationFlags.BodyOnly | JsCompilationFlags.ScopeParameter, new LinqMethods()));
 
             // Assert
-            Assert.Equal("array.filter(function(x){return x===\"Miguel\";})", js);
+            Assert.Equal("array.filter(function(x){return x===\"Amir\";})", js);
         }
 
         [Fact]

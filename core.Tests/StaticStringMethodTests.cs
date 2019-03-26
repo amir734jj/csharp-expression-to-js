@@ -71,7 +71,7 @@ namespace core.Tests
         {
             // Arrange
             Expression<Func<MyClass, string>> expr =
-                o => string.Join(" ", "Miguel", "Angelo", "Santos", "Bicudo");
+                o => string.Join(" ", "Amir", "Hossein");
 
             // Act
             var js = expr.CompileToJavascript(
@@ -79,7 +79,7 @@ namespace core.Tests
                     JsCompilationFlags.BodyOnly | JsCompilationFlags.ScopeParameter, new StaticStringMethods()));
 
             // Assert
-            Assert.Equal("[\"Miguel\",\"Angelo\",\"Santos\",\"Bicudo\"].join(\" \")", js);
+            Assert.Equal("[\"Amir\",\"Hossein\"].join(\" \")", js);
         }
 
         [Fact]
