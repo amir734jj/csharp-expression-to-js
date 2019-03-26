@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using core.Enums;
 
 namespace core
 {
@@ -44,23 +45,36 @@ namespace core
         public static bool CurrentHasPrecedence(JavascriptOperationTypes current, JavascriptOperationTypes parent)
         {
             if (current == JavascriptOperationTypes.Call && parent == JavascriptOperationTypes.IndexerProperty)
+            {
                 return true;
+            }
 
             if (current == JavascriptOperationTypes.TernaryOp)
+            {
                 return JavascriptOperationTypes.TernaryOp > parent;
+            }
 
             if (current == JavascriptOperationTypes.TernaryTest
                 || current == JavascriptOperationTypes.TernaryTrueValue
                 || current == JavascriptOperationTypes.TernaryFalseValue)
+            {
                 return true;
+            }
 
             if (current == JavascriptOperationTypes.TernaryOp && parent == JavascriptOperationTypes.TernaryTrueValue)
+            {
                 return false;
+            }
 
             if (current == JavascriptOperationTypes.AddSubtract && parent == JavascriptOperationTypes.Concat)
+            {
                 return false;
+            }
+
             if (current == JavascriptOperationTypes.Concat && parent == JavascriptOperationTypes.AddSubtract)
+            {
                 return false;
+            }
 
             return current >= parent;
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using core.Enums;
 
 namespace core
 {
@@ -11,6 +12,7 @@ namespace core
     public class JavascriptWriter
     {
         private readonly StringBuilder result = new StringBuilder();
+        
         private readonly List<JavascriptOperationTypes> operandTypes = new List<JavascriptOperationTypes>();
 
         /// <summary>
@@ -50,7 +52,9 @@ namespace core
         {
             var op = JsOperationHelper.GetJsOperator(node.NodeType, node.Type);
             if (op == JavascriptOperationTypes.NoOp)
+            {
                 return null;
+            }
 
             return new PrecedenceController(result, operandTypes, op);
         }
@@ -82,9 +86,13 @@ namespace core
             else if (TypeHelpers.IsNumericType(value.GetType()))
             {
                 if (TypeHelpers.IsIntegerType(value.GetType()))
+                {
                     result.Append(value);
+                }
                 else if (value is float || value is double || value is decimal)
+                {
                     result.AppendFormat("{0:E}", value);
+                }
             }
             return this;
         }

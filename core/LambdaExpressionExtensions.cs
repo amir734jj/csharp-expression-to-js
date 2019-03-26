@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using core.Enums;
 
 namespace core
 {
@@ -42,7 +43,9 @@ namespace core
             options = options ?? JavascriptCompilationOptions.DefaultOptions;
 
             if (options.ScopeParameter && expr.Parameters.Count != 1)
+            {
                 throw new InvalidOperationException("When using ScopeParameter flag, the lambda expression must have one single argument.");
+            }
 
             var visitor =
                 new JavascriptCompilerExpressionVisitor(
@@ -53,7 +56,9 @@ namespace core
             visitor.Visit(options.BodyOnly || options.ScopeParameter ? expr.Body : expr);
 
             if (options.BodyOnly || !options.ScopeParameter || visitor.UsedScopeMembers == null)
+            {
                 return visitor.Result;
+            }
 
             return $"function({string.Join(",", visitor.UsedScopeMembers)}){{return {visitor.Result};}}";
         }
@@ -73,7 +78,9 @@ namespace core
         public static string CompileToJavascript([NotNull] this Expression expr, JavascriptCompilationOptions options = null)
         {
             if (expr == null)
+            {
                 throw new ArgumentNullException(nameof(expr));
+            }
 
             options = options ?? JavascriptCompilationOptions.DefaultOptions;
 

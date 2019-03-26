@@ -9,7 +9,9 @@ namespace core
         public static Func<object, TProperty> MakeGetterDelegate<TProperty>([NotNull] this PropertyInfo property)
         {
             if (property == null)
+            {
                 throw new ArgumentNullException(nameof(property));
+            }
 
             var getMethod = property.GetGetMethod(false);
             if (getMethod != null)

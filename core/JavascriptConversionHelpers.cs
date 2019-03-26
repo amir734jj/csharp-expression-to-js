@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using core.Enums;
 
 namespace core
 {
@@ -52,7 +53,9 @@ namespace core
             foreach (var node in nodes)
             {
                 if (count++ > 0)
+                {
                     writer.Write(separator);
+                }
 
                 context.Visitor.Visit(node);
             }
@@ -92,7 +95,10 @@ namespace core
             var writer = context.GetWriter();
             writer.Write(opening);
             using (writer.Operation(0))
+            {
                 context.WriteMany(separator, nodes);
+            }
+
             writer.Write(closing);
             return context;
         }

@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace core
+namespace core.Enums
 {
     [Flags]
     public enum JsCompilationFlags

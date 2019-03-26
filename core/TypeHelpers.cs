@@ -48,10 +48,14 @@ namespace core
         public static bool IsDictionaryType([NotNull] Type type)
         {
             if (type == null)
+            {
                 throw new ArgumentNullException(nameof(type));
+            }
 
             if (typeof(IDictionary).IsAssignableFrom(type))
+            {
                 return true;
+            }
 
             if (type.IsGenericType)
             {
@@ -66,10 +70,14 @@ namespace core
         public static bool IsListType([NotNull] Type type)
         {
             if (type == null)
+            {
                 throw new ArgumentNullException(nameof(type));
+            }
 
             if (typeof(ICollection).IsAssignableFrom(type))
+            {
                 return true;
+            }
 
             if (type.IsGenericType)
             {
@@ -84,16 +92,22 @@ namespace core
         public static bool IsEnumerableType(Type type)
         {
             if (type == null)
+            {
                 throw new ArgumentNullException(nameof(type));
+            }
 
             if (typeof(IEnumerable).IsAssignableFrom(type))
+            {
                 return true;
+            }
 
             if (type.IsGenericType)
             {
                 var generic = type.GetGenericTypeDefinition();
                 if (typeof(IEnumerable<>).IsAssignableFrom(generic))
+                {
                     return true;
+                }
             }
 
             return false;
@@ -103,7 +117,9 @@ namespace core
             where T : Attribute
         {
             if (predicate == null)
+            {
                 throw new ArgumentNullException(nameof(predicate));
+            }
 
             var attr = type.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
             return attr != null && predicate(attr);
@@ -112,8 +128,13 @@ namespace core
         public static bool IsClosureRootType(this Type type)
         {
             if (type.Name.StartsWith("<>"))
+            {
                 if (type.TestAttribute((CompilerGeneratedAttribute a) => true))
+                {
                     return true;
+                }
+            }
+
             return false;
         }
     }

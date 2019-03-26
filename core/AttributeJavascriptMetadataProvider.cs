@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using core.Compat;
+using System.Threading;
 
 namespace core
 {
@@ -16,7 +16,9 @@ namespace core
         private IJavascriptMemberMetadata GetMemberMetadataNoCache([NotNull] MemberInfo memberInfo)
         {
             if (memberInfo == null)
+            {
                 throw new ArgumentNullException(nameof(memberInfo));
+            }
 
             var attr0 = memberInfo
                 .GetCustomAttributes(typeof(JavascriptMemberAttribute), true)
@@ -24,7 +26,9 @@ namespace core
                 .SingleOrDefault();
 
             if (attr0 != null)
+            {
                 return attr0;
+            }
 
             var jsonAttr = memberInfo
                 .GetCustomAttributes(true)
@@ -33,7 +37,9 @@ namespace core
                 .SingleOrDefault();
 
             if (jsonAttr != null)
+            {
                 return jsonAttr;
+            }
 
             return new JavascriptMemberAttribute
             {
@@ -52,7 +58,9 @@ namespace core
             lock (_locker)
             {
                 if (cache.TryGetValue(memberInfo, out value))
+                {
                     return value;
+                }
 
                 var meta = GetMemberMetadataNoCache(memberInfo);
 
@@ -100,7 +108,9 @@ namespace core
         public IJavascriptMemberMetadata GetMemberMetadata([NotNull] MemberInfo memberInfo, bool useCache)
         {
             if (useCache)
+            {
                 return GetMemberMetadataWithCache(memberInfo);
+            }
 
             return GetMemberMetadataNoCache(memberInfo);
         }
@@ -135,12 +145,16 @@ namespace core
         private Accessors GetAccessors(Type type)
         {
             if (_accessors.TryGetValue(type, out var value))
+            {
                 return value;
+            }
 
             lock (_locker)
             {
                 if (_accessors.TryGetValue(type, out value))
+                {
                     return value;
+                }
 
                 var accessor = new Accessors
                 {

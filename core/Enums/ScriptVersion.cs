@@ -1,4 +1,4 @@
-namespace core
+namespace core.Enums
 {
     /// <summary>
     /// Versions of the ECMAScript and JavaScript.

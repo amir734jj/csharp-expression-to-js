@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using core.Enums;
 using core.Plugins;
 using Xunit;
 
@@ -67,7 +68,10 @@ namespace core.Tests
                 {
                     var name = "arg_" + Parameters.Count;
                     if (i != 0)
+                    {
                         javascriptWriter.Write(", ");
+                    }
+
                     javascriptWriter.Write(name);
                     Parameters[name] = methodCallExpression.Arguments[i];
                 }
@@ -78,7 +82,10 @@ namespace core.Tests
                         i++)
                     {
                         if (i != 0)
+                        {
                             javascriptWriter.Write(", ");
+                        }
+
                         context.Visitor.Visit(Expression.Constant(nameAttribute.PositionalArguments[i]));
                     }
                 }

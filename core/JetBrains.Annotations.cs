@@ -612,7 +612,6 @@ namespace core
     }
 
     // Razor attributes
-
     /// <summary>
     /// Razor attribute. Indicates that a parameter or a method is a Razor section.
     /// Use this attribute for custom wrappers similar to 

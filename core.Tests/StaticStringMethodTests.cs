@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using core.Enums;
 using core.Plugins;
 using Xunit;
 

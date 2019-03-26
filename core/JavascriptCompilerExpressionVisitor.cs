@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using core.Enums;
 
 #pragma warning disable 1591
 namespace core
@@ -119,7 +120,10 @@ namespace core
                     Visit(node.Left);
                     resultWriter.Write('[');
                     using (resultWriter.Operation(0))
+                    {
                         Visit(node.Right);
+                    }
+
                     resultWriter.Write(']');
                     return node;
                 }
@@ -150,17 +154,23 @@ namespace core
             using (resultWriter.Operation(JavascriptOperationTypes.TernaryOp))
             {
                 using (resultWriter.Operation(JavascriptOperationTypes.TernaryTest))
+                {
                     Visit(node.Test);
+                }
 
                 resultWriter.Write('?');
 
                 using (resultWriter.Operation(JavascriptOperationTypes.TernaryTrueValue))
+                {
                     Visit(node.IfTrue);
+                }
 
                 resultWriter.Write(':');
 
                 using (resultWriter.Operation(JavascriptOperationTypes.TernaryFalseValue))
+                {
                     Visit(node.IfFalse);
+                }
 
                 return node;
             }
@@ -171,22 +181,30 @@ namespace core
             if (TypeHelpers.IsNumericType(node.Type))
             {
                 using (resultWriter.Operation(JavascriptOperationTypes.Literal))
+                {
                     resultWriter.Write(Convert.ToString(node.Value, CultureInfo.InvariantCulture));
+                }
             }
             else if (node.Type == typeof(bool))
             {
                 using (resultWriter.Operation(JavascriptOperationTypes.Literal))
+                {
                     resultWriter.Write((bool)node.Value ? "true" : "false");
+                }
             }
             else if (node.Type == typeof(string))
             {
                 using (resultWriter.Operation(JavascriptOperationTypes.Literal))
+                {
                     WriteStringLiteral((string)node.Value);
+                }
             }
             else if (node.Type == typeof(char))
             {
                 using (resultWriter.Operation(JavascriptOperationTypes.Literal))
+                {
                     WriteStringLiteral(node.Value.ToString());
+                }
             }
             else if (node.Value == null)
             {
@@ -1200,7 +1218,9 @@ namespace core
                         foreach (var arg in node.Arguments)
                         {
                             if (resultWriter.Length != posStart)
+                            {
                                 resultWriter.Write(',');
+                            }
 
                             Visit(arg);
                         }

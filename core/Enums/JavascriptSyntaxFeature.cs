@@ -1,4 +1,4 @@
-namespace core
+namespace core.Enums
 {
     public enum JavascriptSyntaxFeature
     {

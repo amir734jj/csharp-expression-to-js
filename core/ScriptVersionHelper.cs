@@ -1,4 +1,5 @@
 using System;
+using core.Enums;
 
 namespace core
 {
@@ -9,7 +10,6 @@ namespace core
         //      http://kangax.github.io/compat-table
         // See: Ecma International, Technical Committee 39 - ECMAScript
         //      https://github.com/tc39
-
         /// <summary>
         /// Indicates whether the specified version of JavaScript supports the given syntax.
         /// </summary>
@@ -82,18 +82,26 @@ namespace core
         public static ScriptVersion Create(ScriptVersion spec, int specVersion, int ecmaVersion, bool allowDeprecated, bool allowProposals)
         {
             if (spec.GetSpecification() != spec)
+            {
                 throw new ArgumentException("Pure specification expected in parameter.", nameof(spec));
+            }
 
             if (spec == 0 && specVersion != 0)
+            {
                 throw new ArgumentException("Specification version must be zero when no specification is passed.", nameof(specVersion));
+            }
 
             var specVerFld = specVersion * Consts.VerFld;
             if (specVerFld >= Consts.VerLim)
+            {
                 throw new ArgumentException("Specification version overflow.", nameof(specVersion));
+            }
 
             var ecmaVerFld = ecmaVersion * Consts.Fld;
             if (ecmaVerFld >= Consts.Lim)
+            {
                 throw new ArgumentException("ECMAScript version overflow.", nameof(ecmaVersion));
+            }
 
             var flags = (allowProposals ? 1 : 0) + (allowDeprecated ? 2 : 0);
             return spec + specVerFld + ecmaVerFld + flags * Consts.FlagFld;
@@ -118,6 +126,7 @@ namespace core
         /// Changes the script version to accept deprecated features.
         /// </summary>
         /// <param name="scriptVersion"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         public static ScriptVersion Deprecated(this ScriptVersion scriptVersion, bool value)
         {
@@ -148,6 +157,7 @@ namespace core
         /// Changes the script version to accept proposed features.
         /// </summary>
         /// <param name="scriptVersion"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         public static ScriptVersion Proposals(this ScriptVersion scriptVersion, bool value)
         {
@@ -197,11 +207,14 @@ namespace core
         /// Changes the script version to accept JScript features.
         /// </summary>
         /// <param name="scriptVersion"></param>
+        /// <param name="specVersion"></param>
         /// <returns></returns>
         public static ScriptVersion MicrosoftJScript(this ScriptVersion scriptVersion, int specVersion)
         {
             if (scriptVersion.GetSpecification() != 0)
+            {
                 throw new ArgumentException("Script version must have no assigned specification.", nameof(scriptVersion));
+            }
 
             return Create(
                 ScriptVersion.MsJ,
@@ -215,11 +228,14 @@ namespace core
         /// Changes the script version to accept Javascript (Mozilla) features.
         /// </summary>
         /// <param name="scriptVersion"></param>
+        /// <param name="specVersion"></param>
         /// <returns></returns>
         public static ScriptVersion Javascript(this ScriptVersion scriptVersion, int specVersion)
         {
             if (scriptVersion.GetSpecification() != 0)
+            {
                 throw new ArgumentException("Script version must have no assigned specification.", nameof(scriptVersion));
+            }
 
             return Create(
                 ScriptVersion.Js,
@@ -240,14 +256,20 @@ namespace core
         {
             var specOther = baseScriptVersion.GetSpecification();
             if (specOther == 0)
+            {
                 return scriptVersion.GetStandardVersion() >= baseScriptVersion.GetStandardVersion();
+            }
 
             var specThis = scriptVersion.GetSpecification();
             if (specThis == ScriptVersion.NonStandard)
+            {
                 return scriptVersion.GetStandardVersion() >= baseScriptVersion.GetStandardVersion();
+            }
 
             if (specThis == specOther)
+            {
                 return scriptVersion.GetSpecificationVersion() >= baseScriptVersion.GetSpecificationVersion();
+            }
 
             return false;
         }
