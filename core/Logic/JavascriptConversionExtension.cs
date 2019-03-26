@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Base class for extenions to the Lambda to JavaScript converter.

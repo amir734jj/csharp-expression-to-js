@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using core.Enums;
 
 #pragma warning disable 1591
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Expression visitor that converts each node to JavaScript code.

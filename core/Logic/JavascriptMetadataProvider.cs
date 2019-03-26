@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// 

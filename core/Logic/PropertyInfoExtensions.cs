@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace core
+namespace core.Logic
 {
     static class PropertyInfoExtensions
     {

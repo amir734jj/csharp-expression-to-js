@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using core.Enums;
+using core.Extensions;
+using core.Logic;
 using core.Plugins;
 using Xunit;
 

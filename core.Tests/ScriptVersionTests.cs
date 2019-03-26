@@ -1,5 +1,6 @@
 ﻿
 using core.Enums;
+using core.Logic;
 using Xunit;
 
 namespace core.Tests

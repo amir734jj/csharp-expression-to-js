@@ -1,7 +1,7 @@
 using System;
 using core.Enums;
 
-namespace core
+namespace core.Logic
 {
     public static class ScriptVersionHelper
     {

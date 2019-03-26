@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using core.Enums;
 
-namespace core
+namespace core.Logic
 {
     public class PrecedenceController : IDisposable
     {

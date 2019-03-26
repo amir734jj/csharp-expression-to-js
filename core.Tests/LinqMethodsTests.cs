@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using core.Enums;
+using core.Extensions;
+using core.Logic;
 using core.Plugins;
 using Xunit;
 

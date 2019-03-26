@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Provides metadata about the objects that are going to be converted to JavaScript in some way.

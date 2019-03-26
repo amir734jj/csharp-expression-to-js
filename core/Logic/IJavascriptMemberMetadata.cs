@@ -1,4 +1,4 @@
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Interface that contains metadata information about a property for JavaScript conversion.

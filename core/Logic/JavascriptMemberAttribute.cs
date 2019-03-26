@@ -1,6 +1,6 @@
 using System;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Attribute containing metadata for JavaScript conversion.

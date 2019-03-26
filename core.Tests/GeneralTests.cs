@@ -5,6 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using core.Enums;
+using core.Extensions;
+using core.Logic;
 using Xunit;
 
 namespace core.Tests

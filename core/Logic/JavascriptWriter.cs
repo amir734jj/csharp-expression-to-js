@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Text;
 using core.Enums;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Writes Javascript code.

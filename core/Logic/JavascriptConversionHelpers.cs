@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using core.Enums;
 
-namespace core
+namespace core.Logic
 {
     /// <summary>
     /// Extension methods to help with the JavaScript rendering, when implementing <see cref="JavascriptConversionExtension"/>.
